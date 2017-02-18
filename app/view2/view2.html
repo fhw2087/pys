@@ -1,5 +1,26 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div ng-controller="View2Ctrl">
+    <div class="game-container">
+        <div class="toolbar">
+            <input type="text" ng-model="SLconfig.totalsum" class="input-sm sum-input" />
+            <button class="btn btn-success btn-sm" ng-click="startGame()">StartGame</button>
+        </div>
+        <div class="game-box">
+            <div class="boom-block" ng-repeat="boom in SLconfig.mapArr">
+                <div class="boom {{boom.className}}" ng-click="boomClick()" ng-right-click="boomRightClick()">
+                    <div ng-if="boom.className == 'flag'">
+                        <div class="sanjiao"></div>
+                        <div class="shuxian"></div>
+                        <div class="hengxian"></div>
+                    </div>
+                    <div ng-if="boom.className == 'num-i'">
+                        <label class="num-{{boom.num}}">{{boom.num}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footerbar">
+            <label class="btn-success">{{SLconfig.time}}</label>
+        </div>
+    </div>
+
+</div>

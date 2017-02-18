@@ -9,6 +9,12 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$scope',function($scope) {
+      // $scope.name = '冯浩伟';
+    $scope.resetThisinput = function(){
+      $scope.name = '';
+    }
+    $scope.confirm = function () {
+        console.log('this is my girl '+$scope.name);
+    }
 }]);

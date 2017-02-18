@@ -23,3 +23,125 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.game-container {
+    position: relative;
+    height:500px;
+    width:750px;
+    border:3px outset #000;
+    margin: 0 auto;
+}
+
+.toolbar {
+    padding: 5px;
+    text-align: center;
+}
+.sum-input {
+    width: 50px;
+    margin-right: 20px;
+}
+
+.game-box {
+    width:668px;
+    height:360px;
+    margin: 0 auto;
+    border:#999 4px inset;
+    text-align:left;
+    padding-top:6px;
+}
+
+.boom-block {
+    display:inline-block;
+    position: relative;
+    width:23px;
+    height:23px;
+    border:#ddd 1px solid;
+    margin-left:-1px;
+    margin-top:-6px;
+}
+
+.boom {
+    width:21px;
+    height:21px;
+    position: absolute;
+}
+
+.land , .boom-dismiss {
+    background-color: #19ae3c;
+}
+
+.boom-i {
+    background: url(http://ogzafx64b.bkt.clouddn.com/lei.jpg) no-repeat scroll -2px -1px;
+    background-size: 26px;
+}
+
+.flag {
+    background-color: #19ae3c;
+}
+
+.flag .sanjiao {
+    position:absolute;
+    width:0;
+    height:0;
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+    border-right:12px solid #f00;
+    left:1px;
+    top:1px;
+}
+.flag .shuxian {
+    position:absolute;
+    width:1px;
+    height:18px;
+    top:1px;
+    left:13px;
+    background:#fff;
+}
+.flag .hengxian {
+    position:absolute;
+    width:10px;
+    height:1px;
+    bottom:2px;
+    left:8px;
+    background:#fff;
+}
+
+.num-i {
+   text-align: center;
+}
+
+.num-0 {
+    color:transparent;
+}
+
+.num-1 {
+    color:#003;
+}
+
+.num-2 {
+    color:#5cb85c;
+}
+
+.num-3 {
+    color:#f00;
+}
+
+.num-4 {
+    color:#006;
+}
+
+.num-5 {
+    color:#903;
+}
+
+.num-6 {
+    color:#066;
+}
+
+.num-7 {
+    color:#000;
+}
+
+.num-8 {
+    color:#666;
+}

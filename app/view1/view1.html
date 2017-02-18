@@ -1,1 +1,7 @@
-<p>This is the partial for view 1.</p>
+<div ng-controller="View1Ctrl">
+    <input ng-model="name" type="text" />
+    <p>{{name}}</p>
+    <button ng-show="name" ng-click="confirm()" class="btn btn-success">confirm</button>
+    <button class="btn btn-info" ng-show="name" ng-click="resetThisinput()">reset</button>
+</div>
+
