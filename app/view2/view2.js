@@ -17,7 +17,9 @@ angular.module('myApp.view2', ['ngRoute'])
         boxSize:30*16,
         time:0,
         gameStatus:'after',
-        isLose:false
+        isLose:false,
+        landNum:0,
+        flagNum:99
     };
     $scope.timer = null;
     $scope.initMap = function () {
@@ -26,6 +28,8 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.SLconfig.mapArr.push({className:'land',num:0});
         }
         $scope.SLconfig.isLose = false;
+        $scope.SLconfig.landNum = $scope.SLconfig.boxSize - $scope.SLconfig.totalsum;
+        $scope.SLconfig.flagNum = $scope.SLconfig.totalsum;
     };
     $scope.initMap();
     $scope.startGame = function () {
@@ -76,7 +80,11 @@ angular.module('myApp.view2', ['ngRoute'])
             }
             $scope.SLconfig.mapArr[index].num = _num;
             $scope.SLconfig.mapArr[index].className = 'num-i';
-            $scope.isWin();
+            $scope.SLconfig.landNum--;
+            if($scope.SLconfig.landNum==0){
+                alert('You Win!');
+                return;
+            }
             if(!_num){
                 $scope.clickArea(nineArr);
             }
@@ -101,8 +109,10 @@ angular.module('myApp.view2', ['ngRoute'])
         if($scope.SLconfig.mapArr[index].className == 'land' || $scope.SLconfig.mapArr[index].className =='boom-dismiss'){
             $scope.SLconfig.mapArr[index].initClass = $scope.SLconfig.mapArr[index].className;
             $scope.SLconfig.mapArr[index].className = 'flag';
+            $scope.SLconfig.flagNum--;
         }else if($scope.SLconfig.mapArr[index].className == 'flag'){
             $scope.SLconfig.mapArr[index].className = $scope.SLconfig.mapArr[index].initClass;
+            $scope.SLconfig.flagNum++;
         }else if($scope.SLconfig.mapArr[index].className == 'num-i'){
             var nineArr = $scope.getNineArr(index);
             var _num = 0;
@@ -149,15 +159,6 @@ angular.module('myApp.view2', ['ngRoute'])
     $scope.clickArea = function (arr) {
         for(var i in arr){
             $scope.boomClick(arr[i]);
-        }
-    };
-    $scope.isWin = function () {
-        for(var i in $scope.SLconfig.mapArr){
-            if($scope.SLconfig.mapArr[i].className == 'land'){
-                return false;
-            }
-            alert('You Win!');
-            $scope.SLconfig.gameStatus = 'after';
         }
     };
 }]).directive('ngRightClick', function($parse) {
