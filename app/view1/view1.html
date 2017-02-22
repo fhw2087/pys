@@ -1,7 +1,16 @@
 <div ng-controller="View1Ctrl">
-    <input ng-model="name" type="text" />
-    <p>{{name}}</p>
-    <button ng-show="name" ng-click="confirm()" class="btn btn-success">confirm</button>
-    <button class="btn btn-info" ng-show="name" ng-click="resetThisinput()">reset</button>
+    <div class="flex full-width" style="height: {{windowHeight}}px;">
+        <div class="flex content-menu">
+            <h1>{{nowMenu.section}}<br/>
+                <small>{{nowMenu.title}}</small>
+            </h1>
+            <p style="text-indent:2em" ng-repeat="p in nowMenu.dec">
+                {{p}}
+            </p>
+        </div>
+        <div class="content-container flex flex1">
+            <img src="{{pic.src}}" alt="{{pic.alt}}" ng-repeat="pic in pictures" ng-if="$index == active" />
+        </div>
+    </div>
 </div>
 

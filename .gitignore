@@ -1,6 +1,7 @@
 logs/*
 !.gitkeep
 node_modules/
+app/images
 tmp
 .DS_Store
 .idea
