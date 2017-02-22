@@ -9,7 +9,7 @@
             </p>
         </div>
         <div class="content-container flex flex1">
-            <img src="{{pic.src}}" alt="{{pic.alt}}" ng-repeat="pic in pictures" ng-if="$index == active" />
+            <img ng-src="{{pic.src}}" alt="{{pic.alt}}" ng-repeat="pic in pictures" ng-if="$index == active" />
         </div>
     </div>
 </div>
