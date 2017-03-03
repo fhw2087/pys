@@ -1,0 +1,225 @@
+.page {
+    position: relative;
+    min-width: 1160px;
+    width: 1160px;
+    margin: 0 auto;
+    padding: 30px 1em 100px;
+}
+.section-tree {
+    width: 1000px;
+}
+.section-left {
+    width: 500px;
+    float: left;
+    padding: 0 60px 50px 30px;
+    text-align: right;
+}
+.section-right {
+    width: 500px;
+    float: right;
+    padding: 0 30px 50px 60px;
+    text-align: left;
+}
+.line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+    left: 499px;
+}
+.line::before {
+    content: '可操作区域';
+    color: red;
+    display: block;
+    position: absolute;
+    width: 100px;
+    height:100%;
+    left: -49px;
+    background-color: rgba(200,200,200,.1);
+}
+.ball {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 50%;
+    left: 479px;
+    text-align: center;
+}
+.date-div {
+    display: inline-block;
+    padding: 5px 40px;
+    background-color: #666;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+.title-div {
+    font-size: 16px;
+    line-height: 1;
+    margin: 0 auto 15px;
+}
+.tigger-div {
+    display: inline-block;
+    font-size: 16px;
+    color: #3399cc;
+    cursor: pointer;
+}
+.tigger-div:hover {
+    text-decoration: underline;
+}
+.detail-div {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+}
+.detail-div::before {
+    width: 120%;
+    height: 400px;
+    display: block;
+    content: '可操作区域';
+    color: red;
+    position: absolute;
+    left: -10%;
+    bottom: -60px;
+    /*background: url(../images/ppt/shuye.png) no-repeat scroll bottom right / 100% auto;*/
+    background-color: rgba(200,200,200,.1);
+    z-index: -1;
+}
+.section-right .detail-div::before {
+    transform: scale(-1,1);
+}
+.detail-div-title {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px 7px;
+    border-bottom: 1px solid #ccc;
+    line-height: 1.4;
+    background-color: beige;
+}
+.close-btn {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+.close-btn > i {
+    font-size: 24px;
+}
+.detail-company, .detail-title {
+    padding: 0 15px;
+    line-height: 1;
+    margin: 15px auto;
+}
+.detail-container {
+    margin: 15px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.detail-part1 {
+
+}
+.detail-part2 {
+
+}
+.part-title {
+    text-align: center;
+    background-color: #ddd;
+    border: 1px solid #666;
+}
+.part-info {
+    padding: 40px 0;
+}
+.add-more {
+    width: 200px;
+    margin: 30px auto 0 400px;
+    text-align: center;
+    font-size: 16px;
+    color: #3399cc;
+    cursor: pointer;
+}
+.nav-fix-right {
+    width: 170px;
+    position: fixed;
+    margin-left: 1000px;
+}
+.hide-all-detail {
+    line-height: 30px;
+    color: #3399cc;
+    cursor: pointer;
+}
+.show-all-detail {
+    line-height: 30px;
+    color: #3399cc;
+    cursor: pointer;
+}
+.time-nav {
+    padding: 0;
+    list-style: none;
+    margin-top: 50px;
+}
+.time-nav >  li {
+    margin-bottom: 10px;
+    border-left: 5px solid #ccc;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.time-nav >  li.active {
+    border-color: red;
+}
+.mouth-nav {
+    padding: 0;
+    list-style: none;
+    display: none;
+    width: 80px;
+}
+.mouth-nav > li {
+    margin: 2px;
+    cursor: pointer;
+}
+.time-nav >  li > div {
+    font-size: 16px;
+    width: 90px;
+}
+.time-nav >  li > div:hover , .mouth-nav > li:hover{
+    background-color: #eee;
+}
+.time-nav >  li.active > div {
+    color: red;
+    background-color: #eee;
+}
+.time-nav >  li.active > .mouth-nav {
+    display: block;
+}
+.active .mouth-nav > li.active {
+    color: #f00;
+    font-size: larger;
+    background-color: #eee;
+}
+.show-detail {
+    display: block !important;
+}
+.last-tree::before {
+    content: '可操作区域';
+    color: red;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height:200px;
+    bottom: -200px;
+    background-color: rgba(200,200,200,.1);
+    z-index: -1;
+}
+.jump-text {
+    color: #3399cc;
+    cursor: pointer;
+}
+.jump-text:hover {
+    text-decoration: underline;
+}

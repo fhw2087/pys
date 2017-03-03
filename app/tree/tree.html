@@ -1,0 +1,57 @@
+<div ng-controller="TreeCtrl">
+    <div class="page">
+
+        <div class="nav-fix-right">
+            <div class="hide-all-detail" ng-click="tiggerAllDetail(false)">收起全部事项详情</div>
+            <div class="show-all-detail" ng-click="tiggerAllDetail(true)">展开全部事项详情</div>
+            <ul class="time-nav">
+                <li class="year" ng-class="{'active':treeConfig.activeYear == year.year }" ng-repeat="year in navData">
+                    <div ng-bind="year.year+'年'" ng-click="year.isShowDetail = !!!year.isShowDetail"></div>
+                    <ul class="mouth-nav" ng-class="{'show-detail':year.isShowDetail}">
+                        <li class="mouth" ng-class="{'active':treeConfig.activeMouth == mouth }" ng-repeat = "mouth in year.mouth" ng-bind="mouth+'月'"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-tree clearfix rel" ng-class="{'last-tree':$last}" ng-repeat="sec in treeData">
+            <div class="clearfix" ng-class="{'section-left': $even ,'section-right' :$odd }">
+                <div class="date-div" ng-bind="sec.date" ng-if="!sec.isSamedate"></div>
+                <div class="title-div"><span ng-bind="treeConfig.changeType[sec.changetype]"></span>：<span ng-bind="sec.changetitle"></span></div>
+                <div class="tigger-div" ng-bind="sec.isShowDetail?'收起详情':'展开详情'" ng-click="sec.isShowDetail = !sec.isShowDetail"></div>
+            </div>
+            <div class="line"></div>
+            <div class="ball"><i class="fa fa-2x fa-car"></i></div>
+            <div class="clearfix" ng-class="{'section-left': $odd ,'section-right' :$even }">
+                <div class="detail-div" ng-show="sec.isShowDetail">
+                    <div class="detail-div-title"><span ng-bind="treeConfig.changeType[sec.changetype].substr(0,2)"></span>内容详情</div>
+                    <div class="close-btn" ng-click="sec.isShowDetail = false"><i class="fa fa-times-circle"></i></div>
+                    <div class="detail-company"><span ng-bind="treeConfig.treeType == 'C'? '企业名称':'个人名称'"></span>：<span class="jump-text" ng-click="jump(treeConfig.treeType == 'C'?treeConfig.companyName :treeConfig.personName)" ng-bind="treeConfig.treeType == 'C'?treeConfig.companyName :treeConfig.personName"></span></div>
+                    <div class="detail-title"><span ng-bind="treeConfig.changeType[sec.changetype]"></span>：<span ng-bind="sec.changetitle"></span></div>
+                    <div class="detail-container">
+                        <div class="detail-part1">
+                            <div class="part-title" ng-if="sec.changetype == 'C'">变更前</div>
+                            <div class="part-info">
+                                table1
+                            </div>
+                        </div>
+                        <div class="detail-part2" ng-if="sec.changetype == 'C'">
+                            <div class="part-title">变更后</div>
+                            <div class="part-info">
+                                table1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-more" ng-if="treeConfig.totalnum > treeData.length" ng-click="addMore()">
+            <span>点击加载更多</span><br />
+            <i class="fa fa-2x fa-angle-double-down" ng-hide="treeConfig.isloading"></i>
+            <i class="fa fa-spin fa-spinner fa-2x" ng-show="treeConfig.isloading"></i>
+        </div>
+
+    </div>
+
+</div>

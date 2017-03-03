@@ -1,0 +1,192 @@
+<div ng-controller="View3Ctrl">
+    <div class="flex full-width" style="height: {{windowHeight}}px;">
+        <div class="flex content-menu">
+            <h1>{{nowMenu.section}}<br/>
+                <small>{{nowMenu.title}}</small>
+            </h1>
+            <p style="text-indent:2em" ng-repeat="p in nowMenu.dec">
+                {{p}}
+            </p>
+            <p style="margin-top: 20px;" ng-show="nowMenu.dec2.show">{{nowMenu.dec2.dec}}</p>
+            <div ng-if="active == 8">
+                <input id="cansaizhe" type="text" class="input-lg" placeholder="输入参赛人员" />
+                <button ng-click="shuru()" class="btn btn-success">确认</button>
+                <div style="margin-top: 50px">
+                    ROLL点<br />
+                    <input ng-model="roll1" type="text" placeholder="第一个点数" class="input-lg"/>
+                    <button ng-click="rolldian(1)" class="btn btn-success btn-sm">ROLL第一个</button>
+                    <input style="margin-top: 20px;" ng-model="roll2" type="text" placeholder="第二个点数" class="input-lg"/>
+                    <button ng-click="rolldian(2)" class="btn btn-success btn-sm">ROLL第二个</button>
+                </div>
+            </div>
+        </div>
+        <div class="content-container flex flex1">
+            <div class="section flex flex1 rel" ng-if="active == 0">
+                <img class="img-bg abs zindex-0" style="{{pictures[0].img1.style}}" ng-src="{{pictures[0].img1.src}}" ng-if="pictures[0].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[0].img2.style}}" ng-src="{{pictures[0].img2.src}}" ng-if="pictures[0].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 1">
+                <img class="img-bg abs zindex-0" style="{{pictures[1].img1.style}}" ng-src="{{pictures[1].img1.src}}" ng-if="pictures[1].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[1].img2.style}}" ng-src="{{pictures[1].img2.src}}" ng-if="pictures[1].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 2">
+                <img class="img-bg abs zindex-0" style="{{pictures[2].img1.style}}" ng-src="{{pictures[2].img1.src}}" ng-if="pictures[2].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[2].img2.style}}" ng-src="{{pictures[2].img2.src}}" ng-if="pictures[2].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 3">
+                <img class="img-bg abs zindex-0" style="{{pictures[3].img1.style}}" ng-src="{{pictures[3].img1.src}}" ng-if="pictures[3].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[3].img2.style}}" ng-src="{{pictures[3].img2.src}}" ng-if="pictures[3].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 4">
+                <img class="img-bg abs zindex-0" style="{{pictures[4].img1.style}}" ng-src="{{pictures[4].img1.src}}" ng-if="pictures[4].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[4].img2.style}}" ng-src="{{pictures[4].img2.src}}" ng-if="pictures[4].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 5">
+                <img class="img-bg abs zindex-0" style="{{pictures[5].img1.style}}" ng-src="{{pictures[5].img1.src}}" ng-if="pictures[5].img1.show" />
+                <img class="img-sl abs zindex-1" style="{{pictures[5].img2.style}}" ng-src="{{pictures[5].img2.src}}" ng-if="pictures[5].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 6">
+                <p class="tl-c">懒得找图片了，简单说下</p>
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 7">
+                <img class="img-bg abs zindex-1" style="{{pictures[7].img2.style}}" ng-src="{{pictures[7].img2.src}}" ng-if="pictures[7].img2.show" />
+            </div>
+            <div class="section flex flex1 rel" ng-if="active == 8">
+                <div class="flex rel" style="flex:3;border-right: 1px solid red">
+                    <div class="flex flex1" style="flex-direction: column">
+                        <p class="tl-c">胜者1轮</p>
+                        <button class="btn btn-danger" ng-click="sortrandom(1)" style="width:40%;margin:10px auto;">排序</button>
+                        <div class="rel people" ng-repeat="m in firstpeople" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                            <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                            <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(1,$index)"></div>
+                            <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(1,$index)"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex1">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">胜者2轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(2)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in secpeople" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(2,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(2,$index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">胜者3轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(3)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in thipeople" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(3,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(3,$index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1" ng-if="forpeople.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">胜者4轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(4)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in forpeople" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(4,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(4,$index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1" ng-if="people5.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">胜者5轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(5)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in people5" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(5,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(5,$index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1" ng-if="people6.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">胜者6轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(6)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in people6" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;right: 0;" ng-click="win(6,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;right: 0;" ng-click="lose(6,$index)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex rel" style="flex:3">
+                    <div class="flex flex1" ng-if="losp6.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者6轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(16)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp6" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(16,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1" ng-if="losp5.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者5轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(15)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp5" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(15,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1" ng-if="losp4.length">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者4轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(14)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp4" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(14,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者3轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(13)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp3" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(13,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者2轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(12)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp2" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height:30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(12,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex1">
+                        <div class="flex flex1" style="flex-direction: column">
+                            <p class="tl-c">败者1轮</p>
+                            <button class="btn btn-danger" ng-click="sortrandom(11)" style="width:40%;margin:10px auto;">排序</button>
+                            <div class="rel people" ng-repeat="m in losp1" style="width:60%;margin:0 auto 5px;height: 30px;border:2px solid #ebccd1;line-height: 30px;background-color: #eee">
+                                <div style="width:80%;font-size: 20px;margin-left: 20%" class="tl-c">{{m}}</div>
+                                <div class="abs btn-success" style="height:50%;width:20%;top:0;left: 0;" ng-click="win(11,$index)"></div>
+                                <div class="abs btn-danger" style="height:50%;width:20%;bottom:0;left: 0;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
