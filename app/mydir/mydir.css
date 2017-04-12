@@ -1,0 +1,18 @@
+.con {
+    width: 340px;
+    height: 340px;
+}
+.lspan {
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 23px;
+    font-size: 14px;
+    background-color: red;
+    border-radius: 50%;
+    color: #fff;
+}
